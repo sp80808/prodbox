@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build artifacts
+build/
+.svelte-kit/
+dist/
+
+# Tauri build artefacts
+src-tauri/target/
+src-tauri/WixTools/
+
+# Python artefacts
+python-sidecars/**/__pycache__/
+python-sidecars/**/*.pyc
+python-sidecars/**/*.pyo
+python-sidecars/**/dist/
+python-sidecars/**/*.spec
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Editor
+.DS_Store
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Lock files (keep one — use whichever your team prefers)
+# yarn.lock
+# pnpm-lock.yaml
