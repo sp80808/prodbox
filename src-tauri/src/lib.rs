@@ -58,13 +58,21 @@ async fn parse_daw_project(
 ) -> Result<DawMeta, String> {
     let file_path = Path::new(&path);
 
-    // Validate path exists
+    // Validate path exists and canonicalize to prevent directory traversal
     if !file_path.exists() {
         let _ = app_handle.emit("daw:parse-error", serde_json::json!({
             "error": format!("File not found: {}", path)
         }));
         return Err(format!("File not found: {}", path));
     }
+
+    let canonical_path = file_path.canonicalize().map_err(|e| {
+        let msg = format!("Invalid path: {}", e);
+        let _ = app_handle.emit("daw:parse-error", serde_json::json!({
+            "error": &msg
+        }));
+        msg
+    })?;
 
     // Determine parser based on extension
     let ext = file_path
@@ -84,10 +92,10 @@ async fn parse_daw_project(
         }
     };
 
-    // Spawn Python parser as child process (path as single CLI argument, no shell interpolation)
+    // Spawn Python parser as child process (canonical path as single CLI argument, no shell interpolation)
     let output = Command::new("python3")
         .arg(parser_script)
-        .arg(&path)
+        .arg(canonical_path.to_str().unwrap_or(&path))
         .output()
         .map_err(|e| {
             let msg = format!("Failed to spawn parser: {}", e);
