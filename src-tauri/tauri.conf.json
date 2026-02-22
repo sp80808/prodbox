@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.tauri.app/config/2",
+	"productName": "Prod Box",
+	"version": "0.1.0",
+	"identifier": "com.prodbox.app",
+	"build": {
+		"frontendDist": "../build",
+		"devUrl": "http://localhost:1420",
+		"beforeDevCommand": "npm run dev",
+		"beforeBuildCommand": "npm run build"
+	},
+	"app": {
+		"windows": [
+			{
+				"label": "main",
+				"title": "Prod Box",
+				"width": 1280,
+				"height": 800,
+				"resizable": true,
+				"fullscreen": false
+			}
+		],
+		"security": {
+			"csp": "default-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:"
+		}
+	},
+	"bundle": {
+		"active": true,
+		"targets": "all",
+		"icon": [
+			"icons/32x32.png",
+			"icons/128x128.png",
+			"icons/128x128@2x.png",
+			"icons/icon.icns",
+			"icons/icon.ico"
+		],
+		"externalBin": [
+			"python-sidecars/als_parser/parser",
+			"python-sidecars/logicx_parser/parser"
+		]
+	}
+}
