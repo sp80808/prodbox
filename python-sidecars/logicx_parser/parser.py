@@ -46,6 +46,7 @@ def parse_logicx(bundle_path: str) -> dict:
             with open(alt_plist_path, 'rb') as f:
                 alt_plist = plistlib.load(f)
             for track in alt_plist.get('tracks', []):
+                # Logic Pro uses 'name' in newer versions and 'trackName' in older ones
                 name = track.get('name') or track.get('trackName') or 'Untitled'
                 tracks.append({
                     'name': name,

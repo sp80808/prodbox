@@ -73,9 +73,8 @@ async fn parse_daw_project(
         .unwrap_or("");
 
     let parser_script = match ext {
-        "als" => "parsers/parse_daw.py",
-        "logicx" => "parsers/parse_daw.py",
-        "flp" => "parsers/parse_daw.py",
+        "als" => "python-sidecars/als_parser/parser.py",
+        "logicx" => "python-sidecars/logicx_parser/parser.py",
         _ => {
             let msg = format!("Unsupported DAW format: .{}", ext);
             let _ = app_handle.emit("daw:parse-error", serde_json::json!({

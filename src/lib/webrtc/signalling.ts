@@ -18,6 +18,8 @@ export const ICE_SERVERS: RTCIceServer[] = [
 			'turn:turn.prodbox.app:3478?transport=tcp',
 			'turns:turn.prodbox.app:5349?transport=tcp'
 		],
+		// Short-lived TURN credentials generated server-side via Coturn
+		// use-auth-secret mechanism. Must be configured before production use.
 		username: '',
 		credential: ''
 	}

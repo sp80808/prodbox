@@ -30,7 +30,10 @@ export function getYMap<T>(name: string): Y.Map<T> {
 	return getYDoc().getMap<T>(name);
 }
 
-/** Generate a simple unique ID (UUID-like) */
+/** Generate a unique ID suitable for distributed peer environments */
 export function uid(): string {
+	if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+		return crypto.randomUUID();
+	}
 	return Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 }
