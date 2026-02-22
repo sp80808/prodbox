@@ -1,0 +1,48 @@
+@import '@fontsource/jetbrains-mono/variable.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		color-scheme: dark;
+	}
+
+	html,
+	body {
+		@apply bg-charcoal-900 text-white;
+		font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+	}
+
+	/* Scrollbar — Tactile Dark */
+	::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	::-webkit-scrollbar-track {
+		@apply bg-charcoal-800;
+	}
+	::-webkit-scrollbar-thumb {
+		@apply bg-charcoal-400 rounded-full;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		@apply bg-neon-blue;
+	}
+}
+
+@layer components {
+	/* Tactile card surface */
+	.card {
+		@apply bg-charcoal-600 border border-charcoal-400 rounded-lg;
+	}
+
+	/* Neon accent button */
+	.btn-primary {
+		@apply bg-neon-blue text-charcoal-900 font-bold px-4 py-2 rounded hover:brightness-110 active:scale-95 transition-all;
+	}
+
+	/* Monospace data labels */
+	.label-mono {
+		@apply font-mono text-xs text-charcoal-300 uppercase tracking-widest;
+	}
+}

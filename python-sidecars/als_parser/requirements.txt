@@ -1,0 +1,6 @@
+# als_parser
+#
+# Runtime dependencies (stdlib only — no third-party packages needed).
+# PyInstaller is used to build a self-contained binary for bundling with Tauri.
+
+pyinstaller>=6.0.0
